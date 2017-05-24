@@ -231,103 +231,36 @@ google.dom.append(a)}}function e(){if(document.f&&document.f.btnI)document.f.btn
 	 
 	 
 	 
-
-<body>
-
-<div id='container'>
-    <div id='header'>Have a chat</div> 
-    <div id='messagesDiv'></div>
-
-    <div id='inputs-holder'>
-        <label for='nameInput'>Name:</label>
-        <input type='text' id='nameInput'>
-        <!--<span>Press enter to send your message</span> Excluded for this review -->
-        <!--<button id='questionmark'>?</button> Excluded for this review -->
-        <textarea type='text' id='messageInput' placeholder='Write your message here...'></textarea>   
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Chat - Customer Module</title>
+<link type="text/css" rel="stylesheet" href="style.css" />
+</head>
+ 
+<div id="wrapper">
+    <div id="menu">
+        <p class="welcome">Welcome, <b></b></p>
+        <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
+        <div style="clear:both"></div>
     </div>
+     
+    <div id="chatbox"></div>
+     
+    <form name="message" action="">
+        <input name="usermsg" type="text" id="usermsg" size="63" />
+        <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+    </form>
 </div>
-
-<!--<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>-->
-<script src="chatroom.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script type="text/javascript">
+// jQuery Document
+$(document).ready(function(){
+ 
+});
+</script>
 </body>
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-var myDataRef = new Firebase('https://insertnamehere.firebaseio.com/');
-
-//Set a max limit of entries to 100
-dataAddQuery = myDataRef.limit(100);
-
-dataAddQuery.on('child_added', function(snapshot) {
-    var message = snapshot.val();
-    displayChatMessage(message.name, message.text);
-});
-
-//Adds a scrollbar when 26 messages have been written so that it stays within the container
-dataRemoveQuery = myDataRef.endAt().limit(26);
-
-dataRemoveQuery.on('child_removed', function(snapshot) {
-    var message = snapshot.val();
-    removeChatMessage(message.name, message.text);
-});
-
-document.getElementById("messageInput").addEventListener("keypress",(function (e) {
-
-    //When ENTER is pressed
-    if (e.keyCode == 13) {
-        var name = document.getElementById('nameInput').value;
-
-        if (name.length > 18) {
-            alert('Please enter a shorter name'); //The alert is temporary
-        }
-        else {
-            var text = document.getElementById('messageInput').value;
-
-            if (text.length > 450) {
-                alert('Your message is too long'); //The alert is temporary
-            }
-            else {
-                myDataRef.push({name: name, text: text});
-                document.getElementById('messageInput').value = "";
-            }
-        }
-    }
-}))
-
-function displayChatMessage(name, text) {
-
-  var newMessage = document.createElement("div");
-  newMessage.innerHTML = "<b>" + name + "</b> : " + text;
-  document.getElementById("messagesDiv").appendChild(newMessage);
-}
-
-function removeChatMessage(name, text) {
-  document.getElementById("messagesDiv").removeChild(document.getElementById("messagesDiv").firstChild)
+</html>
 
 	
 	
@@ -352,21 +285,7 @@ function removeChatMessage(name, text) {
 	
 	
 	
-function displayChatMessage(name, text) {
-  var newMessage = document.createElement("div");
-  newMessage.innerHTML = "<b>" + name + "</b> : " + text;
-  // add the id!
-  newMessage.id = "message-" + name;
-  document.getElementById("messagesDiv").appendChild(newMessage);
-}
 
-function removeChatMessage(name, text) {
-  // remove using the id attribute
- var child = document.getElementById("message-"+name);
- document.getElementById("messagesDiv").removeChild(child);
-}
-   
-   
    
    
    
