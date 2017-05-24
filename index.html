@@ -224,24 +224,23 @@ google.dom.append(a)}}function e(){if(document.f&&document.f.btnI)document.f.btn
    
    
    
-   
-    function getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++ ) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
+   <!DOCTYPE html>
+<html>
+<body>
 
-   
-   
-   
-   
-   
-   '#' + (function co(lor){   return (lor +=
-  [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f'][Math.floor(Math.random()*16)])
-  && (lor.length == 6) ?  lor : co(lor); })('');
+<h2>JavaScript Math</h2>
+
+<p>Math.floor(Math.random() * 10) + 1) returns a random integer between 1 and 256 (both included).</p>
+
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML =
+Math.floor(Math.random() * 256) + 1;
+</script>
+
+</body>
+</html>
 
 
 
