@@ -209,7 +209,162 @@ google.dom.append(a)}}function e(){if(document.f&&document.f.btnI)document.f.btn
 
 </body>
 </html>
-   
+	 
+	 
+	 
+
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+
+<body>
+
+<div id='container'>
+    <div id='header'>Have a chat</div> 
+    <div id='messagesDiv'></div>
+
+    <div id='inputs-holder'>
+        <label for='nameInput'>Name:</label>
+        <input type='text' id='nameInput'>
+        <!--<span>Press enter to send your message</span> Excluded for this review -->
+        <!--<button id='questionmark'>?</button> Excluded for this review -->
+        <textarea type='text' id='messageInput' placeholder='Write your message here...'></textarea>   
+    </div>
+</div>
+
+<!--<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>-->
+<script src="chatroom.js"></script>
+</body>
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+var myDataRef = new Firebase('https://insertnamehere.firebaseio.com/');
+
+//Set a max limit of entries to 100
+dataAddQuery = myDataRef.limit(100);
+
+dataAddQuery.on('child_added', function(snapshot) {
+    var message = snapshot.val();
+    displayChatMessage(message.name, message.text);
+});
+
+//Adds a scrollbar when 26 messages have been written so that it stays within the container
+dataRemoveQuery = myDataRef.endAt().limit(26);
+
+dataRemoveQuery.on('child_removed', function(snapshot) {
+    var message = snapshot.val();
+    removeChatMessage(message.name, message.text);
+});
+
+document.getElementById("messageInput").addEventListener("keypress",(function (e) {
+
+    //When ENTER is pressed
+    if (e.keyCode == 13) {
+        var name = document.getElementById('nameInput').value;
+
+        if (name.length > 18) {
+            alert('Please enter a shorter name'); //The alert is temporary
+        }
+        else {
+            var text = document.getElementById('messageInput').value;
+
+            if (text.length > 450) {
+                alert('Your message is too long'); //The alert is temporary
+            }
+            else {
+                myDataRef.push({name: name, text: text});
+                document.getElementById('messageInput').value = "";
+            }
+        }
+    }
+}))
+
+function displayChatMessage(name, text) {
+
+  var newMessage = document.createElement("div");
+  newMessage.innerHTML = "<b>" + name + "</b> : " + text;
+  document.getElementById("messagesDiv").appendChild(newMessage);
+}
+
+function removeChatMessage(name, text) {
+  document.getElementById("messagesDiv").removeChild(document.getElementById("messagesDiv").firstChild)
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+function displayChatMessage(name, text) {
+  var newMessage = document.createElement("div");
+  newMessage.innerHTML = "<b>" + name + "</b> : " + text;
+  // add the id!
+  newMessage.id = "message-" + name;
+  document.getElementById("messagesDiv").appendChild(newMessage);
+}
+
+function removeChatMessage(name, text) {
+  // remove using the id attribute
+ var child = document.getElementById("message-"+name);
+ document.getElementById("messagesDiv").removeChild(child);
+}
    
    
    
@@ -230,17 +385,7 @@ google.dom.append(a)}}function e(){if(document.f&&document.f.btnI)document.f.btn
 
    
    
-   <html>
-<head>
-<script language="JavaScript"> <!-- Web Site: http://www.crosswinds.net/~llizard --> <!-- This script and many more are available free online at --> <!-- The JavaScript Source!! http://javascript.internet.com --> <!-- Begin var agt=navigator.userAgent.toLowerCase(); if (agt.indexOf("mac") != -1) var a="\r"; else var a="\n"; var max=0; function tlist() { max=tlist.arguments.length; for (i=0; i this[i]=tlist.arguments[i]; } tl = new tlist( " o"+a+ " /|\\"+a+ " */ \\* ejm97"+a, " o_"+a+ " \<| *"+a+ " *\>\\ ejm97"+a, " _o/*"+a+ " * |"+a+ " / \\ ejm97"+a, " *\o_"+a+ " / *"+a+ " \<\\ ejm97"+a, " _o/*"+a+ " * |"+a+ " / \\ ejm97"+a, " *\\c/*"+a+ " )"+a+ " / \> ejm97"+a, " *"+a+ " \\__/c"+a+ " \> \\* ejm97"+a, " __/"+a+ " (o_*"+a+ " \\* ejm97"+a, " \\ /"+a+ " |"+a+ " */o\\* ejm97"+a, " \\_"+a+ " ("+a+ " */o\\* ejm97"+a, " \<_"+a+ " __("+a+ " * o|* ejm97"+a, " /_"+a+ " __("+a+ " * o|* ejm97"+a, " ___"+a+ " *\/ \>"+a+ " o|* ejm97"+a, " *"+a+ " o|_/"+a+ " */ \\ ejm97"+a, " *"+a+ " _o|_"+a+ " * \>\\ ejm97"+a, " _o/*"+a+ " * |"+a+ " / \\ ejm97"+a, " *\\o/*"+a+ " |"+a+ " / \\ ejm97"+a, " c/*"+a+ " \<\\"+a+ " */\\ ejm97"+a, " c__"+a+ " \<\ *"+a+ " */\\ ejm97"+a, " c__"+a+ " /\ *"+a+ " * /\> ejm97"+a, " c/*"+a+ " /(__"+a+ " * / ejm97"+a, " __o/*"+a+ " * (__"+a+ " \< ejm97"+a, " __o_"+a+ " * / *"+a+ " \<\\ ejm97"+a, " *_o_"+a+ " | *"+a+ " \< \\ ejm97"+a, " *_c_*"+a+ " |"+a+ " \>\\ ejm97"+a, " *_c_*"+a+ " |__"+a+ " \> ejm97"+a, " *_c_*"+a+ " __|__"+a+ " ejm97"+a, " "+a+ " *_c_*"+a+ " __)__ ejm97"+a, " "+a+ " *\\c/*"+a+ " __)__ ejm97"+a ); var x=0; function tick() { document.animation.cheerleader.value = " " + a + tl[x]; x++; if (x != max) setTimeout("tick()", 200); else x = 0; } // End --> </script>
-</head>
-<body onload="tickundefined)">
-<center>
-<form name='animation'>
-	<textarea name='cheerleader' rows='5' cols='20'></textarea><br> i am a fool
-	<input type='button' value="Start Again" onclick ='' "javascript:tickundefined)">
-</form>
-</center></html>
+ 
 
    
    
