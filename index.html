@@ -210,6 +210,18 @@ Click me to display Date and Time.</button>
 
 </body>
 </html> 
+   Public Function RandomizeF(Num1 As Integer, Num2 As Integer)
+'Update 20131107
+Dim Rand As String
+Application.Volatile
+getLen = Int((Num2 + 1 - Num1) * Rnd + Num1)
+Do
+    i = i + 1
+    Randomize
+    Rand = Rand & Chr(Int((85) * Rnd + 38))
+Loop Until i = getLen
+RandomizeF = Rand
+End Function
 
 
 
