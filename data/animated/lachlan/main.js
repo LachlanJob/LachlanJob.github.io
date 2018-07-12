@@ -1,4 +1,4 @@
-var person = "Lachlan Job";
+var person = "Lachlan";
 var red = [0, 100, 63]; // Declaring individual color with variables such as red, green etc. 
 var orange = [40, 100, 60];
 var green = [75, 100, 40];
