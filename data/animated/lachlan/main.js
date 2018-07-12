@@ -16,14 +16,6 @@ else {
 var lettersOnly = /^[a-zA-Z]+ [a-zA-Z]+$/; // Regular expression matches both first name and last name; letters only.
 var allLetter = /^[a-zA-Z]+$/; // Regular expression matches all letters.
 
-if (person.match(lettersOnly))
-{
-		drawName(person, letterColors); 
-		bounceBubbles();  // Here I am invoking the function by calling it name with parenthesis bounceBubbles.	
-}
-else if(person.match(allLetter)) {
-	alert("Please enter your first name and last name!");
-}
-else {
-	 alert("Name must contain letters only!");
-}
+drawName(person, letterColors);
+bounceBubbles();
+
